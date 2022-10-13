@@ -1,0 +1,125 @@
+react have some libraries to use in multi platform: web, mobile, desktop app...
+there are 2 base libraries we need to import when working on a environment: React, react-dom (web), react-native(mobile)...
+
+npx is a package runner tool that comes with npm 5.2+
+
+npm vs yarn
+Install dependencies from package.json: npm install == yarn
+Install a package and add to package.json: npm install package --save == yarn add package
+Install a devDependency to package.json: npm install package --save-dev == yarn add package --dev
+Remove a dependency from package.json: npm uninstall package --save == yarn remove package
+Upgrade a package to its latest version: npm update --save == yarn upgrade
+Install a package globally: npm install package -g == yarn global add package
+
+check local folder of a library: npm list lib_name
+if that library was installed globally: npm list -g lib_name
+remove global library: npm uninstall -g lib_name
+
+npx vs mpn
+npx auto installs all of required files needed (use latest version if we don't specific version) for command and executes it immediately, end then deletes it from the local file
+
+<React.StrictMode> will give warnings if there are some codes inside this tag is deprecated (the React team doesn't support it anymore in the new version of React)
+
+the 'build' folder will be created when we build our application and all there source codes in 'src' folder is placed in index.html
+
+Babel and Webpack: optimize our app to run on browser.
+Babel is make sure that all of our code gets built into a basic version of JS that can be understood by any browsers.
+After we build our app, in build/static/js we can see many of chunk.js files. A chunk is essentially a contained portion of JavaScript code that is working together to actually represent a part of our application. Webpack break these js files into chunks so that when the user is trying to access the home page, he just gets the JavaScript related to the home page. If we wants to navigate to like another page, then I'm going to turn that other page into a new chunk and then send it to them when they need it. So Webpack is essentially modularized our code module being a chunk.
+
+React component re-render in cases: quá trình re-render diễn ra từ component parent tới component child
+Trong functional component, khi re-render, code của cả function đó sẽ đc chạy lại từ trên xuống dưới.
+1. state obj change in memory => in class base component, use this.setState({key:value}) //its called shadow merge
+In class component, the sequence of life cycle is: constructor (state initial) -> render() -> componentDidMount(). setState() -> render()
+2. props of the component change
+
+In class component, setState is a asynchronous call. To get setState synchronous, we can write setState like this:
+this.setState(()=>{
+	// update state
+	return {key:value};
+}, ()=>{
+	// do something after state updated
+	console.log(this.state);
+})
+
+Promise
+callback hell => these callback functions are all asynchronous functions => We don't know when those functions will complete and we have to nest a bunch of other function calls inside of each other because each one depends on the result and the return of the previous one.
+There are 2 types of result give back from a promise: resolve() and reject().
+To get the result of resolve(), we use .then((data)=>{}) after a promise call
+To get the result of reject(), we use .catch(data)=>{}) after a promise call
+
+Async await
+Async function have the same ability to promise. When using await, it will wait until the previous task complete and continue to the next line of code (similar to .then() of promise). If we want to catch some errors orcur when await code is executing, we can put it into a try-catch block (similar to .catch() of promise)
+
+when we console log a obj, if that obj have a property with the underscore before its name (Ex: _targetInst), there is the kind of property added by React, and it is not for us to access. We shouldn't be accessing anything with an underscore
+
+get value of onChange event: e.target.value
+
+string interpolation: ``
+
+'yarn upgrade react react-dom --latest' vs 'yarn upgrade react react-dom'
+If current local version is 17:
+'yarn upgrade react react-dom' will upgrade to the latest version of version 17, Ex: 17.8.5
+'yarn upgrade react react-dom --latest' will upgrade to the latest version of package, Ex: 19.0.3
+
+<React.StrictMode> in React 18 helps re-render everything so that it can catch any weird behaviors that might occur inside component, so that instead of rendering 1 time after setState, it will render twice. To distinguish between component render and <React.StrictMode> render, we can use GG extension React Developer Tools
+
+Virtual DOM is a JavaScript representation of the real DOM tree.
+
+SSH is like a unique fingerprint you generate for your computer in your terminal, which you then let your github account know about so it knows that requests from this computer using SSH (cloning/ pushing/ pulling) are safe to do.
+
+To use SASS in react app, run 'yarn add sass'
+
+'-lock' file (Ex: package-lock.json, yarn.lock) is generated by NPM or Yarn in order to determine for an application what version of all of dependencies are lock to in this project
+
+Using react-router-dom
+Put <App/> inside <BrowserRouter></BrowserRouter>
+In App component, return <Routes> <Route path = '', element = {}/> </Routes>
+To use nested route, we can do like this: <Route path = 'abc' element = {A}> <Route path = 'def' element = {B}/> </Route> and we can access B through '/abc/def'. And then, to decide the location of B inside A, we use <Outlet/> to represent for B
+To determine the default child Route is choosen for <Outlet/> when we access the path of parent's Route, we replace <Route> property 'path' by 'index={true}'
+
+box-sizing: border-box
+When we set padding for an element, we expect that the padding is accounted for inside of actual width and height of that element (decrease the width and height of content). But the fact is that it will increase the total width and height of that element. To prevent that, we use box-sizing: border-box;
+To apply a css for all element on page, we use:
+* {
+	box-sizing: border-box;
+}
+
+--------------------------------------------
+Firebase
+
+install: yarn add firebase or npm install firebase
+
+in firestore there are 3 terms: collection, document, data.
+Document like a record of a table, data like fields of a record, collection like a table of document
+
+When login with Google, we will get a UID
+
+--------------------------------------------
+.filter((_, idx)=>{}) // use '_' to ignore the first argument, 'idx' is the index of element
+
+<Route path=":category" element={<Category />} />
+{/* ':category' is a parameter that can be accessed in Category component */}
+And inside Category component, to access that parameter, we use useParams hook.
+
+file '_redirects' is specify for netlify
+
+Contexts with reducer:
+	we use useReducer is when 1 update needs to modify multiple values in state
+	flow of data: component send an action to reducer and reducer give values back to the component
+
+--------------------------------------------
+Redux
+
+there are 2 types of state in React: component state ( managed by useState) and global state (managed by Redux Store because redux always wrap all of our application)
+
+To pull data from redux store to component, we use useSelector hook. useSelector runs every time that the state object has updated in the root reducer
+
+Redux-Logger
+Logger is a Middleware lies between action and reducer to log out the state before (the state is called prev state) and after (the state is called next state) reducer run. 
+
+Redux flow
+Component dispatch actions to Middleware -> Middleware log the actions -> Middleware send actions to the reducers -> Reducers update -> actions go to reducers -> reducers return the values to the root reducer -> the root reducer update state -> all the useSelector rerun to get new state back to the component -> component rerender if useSelector return a new value
+
+Redux persist
+Keep the state after we refresh tha page
+
