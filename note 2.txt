@@ -103,6 +103,30 @@ And inside Category component, to access that parameter, we use useParams hook.
 
 file '_redirects' is specify for netlify
 
+property name is fired with property value when a event of a element occur
+
+by default, any button in <form> have type = 'submit', to make it become a normal button, change type = 'button'
+
+To make a element in the center of a page, we can use css 'margin: auto auto;'
+
+--------------------------------------
+Context
+
+send data from parent -> child: pass props from a parent down to a child
+send data from child -> parent: pass callback from a parent down to a child to get the data up to the parent
+
+< .Provider> wrap around any other components that need access to the values
+
+Re-run the component vs re-render the component
+A component re-run in these cases: 
+	it's state updates
+	it's props changes 
+	the context that component are using is updated
+But if there is nothing change on the DOM of that component, it will NOT re-render.
+
+If we have multiple components that are all listening to a context, and these components don't use the actual values return from that context to update JSX, React will only re-run that function components (all the component's code except return() funtion) but not re-render anything
+-> it will lead to a performance problem if we have hundreds of components that are all listening to a context
+
 Contexts with reducer:
 	we use useReducer is when 1 update needs to modify multiple values in state
 	flow of data: component send an action to reducer and reducer give values back to the component
