@@ -136,14 +136,45 @@ Redux
 
 there are 2 types of state in React: component state ( managed by useState) and global state (managed by Redux Store because redux always wrap all of our application)
 
+Redux được sinh ra và hoạt động trên 3 nguyên tắc chính:
+
+Chỉ có một nguồn tin cậy duy nhất (Single source of truth): State của toàn bộ ứng được chứa trong một object tree nằm trong Store duy nhất.
+Trạng thái chỉ được phép đọc (State is read-only): Cách duy nhất để thay đổi State của ứng dụng là dùng một Action (là 1 object mô tả những gì xảy ra)
+Thay đổi được thực hiện với pure functions (Changes are made with pure functions): Với mỗi actions, bạn phải chỉ định cách store thay đổi bằng reducers.
+
 To pull data from redux store to component, we use useSelector hook. useSelector runs every time that the state object has updated in the root reducer
 
 Redux-Logger
 Logger is a Middleware lies between action and reducer to log out the state before (the state is called prev state) and after (the state is called next state) reducer run. 
 
 Redux flow
-Component dispatch actions to Middleware -> Middleware log the actions -> Middleware send actions to the reducers -> Reducers update -> actions go to reducers -> reducers return the values to the root reducer -> the root reducer update state -> all the useSelector rerun to get new state back to the component -> component rerender if useSelector return a new value
+Component dispatch actions to Middleware -> Middleware log the actions -> Middleware send actions to the reducers -> Reducers updated 
+case 1: -> the actions go to Saga -> Saga fire a new action -> action go to the middleware
+case 2: -> reducers return the values to the root reducer -> the root reducer update state -> all the useSelector rerun to get new state back to the component -> component rerender if useSelector return a new value
 
 Redux persist
 Keep the state after we refresh tha page
 
+Redux-Thunk
+Redux-Thunk recerive action and then return function which can be dispatch to another middleware or dispatch to reducer
+So what you want to do with thunk is essentially you want to figure out where in your code base you have asynchronous behavior that you can move into a action driven flow
+Thunk recommends that you declare your thunk actions name with post-fix async
+
+If we are using a spinner when loading a page, maybe we dont need to use redux persist on that page
+
+Side effect
+Side effect các bạn có thể hiểu đơn giản là các xử lý bất đồng bộ như là call API, sử dụng setTimeout, setInterval,…
+
+Redux-Saga
+Saga replace thunk, so you can use only 1
+
+Generator function
+Async Await is actually built on top of generators
+declare a generator function: function*
+Generator function is use when you want to establish multiple executions in function, you can control when you want to continue the execution in this function onwards. It as the ability to "pause" functions
+We need to remember that whenever we see yield, our code is stopping at this point, even if it's asynchronous code
+a yield only run if the previous yield is complete
+all() is an effect that run everything inside and only complete when all of it is done
+takeLatest() mean if you hear a bunch of the same action, give the latest one
+call(): turn a function into an effect in saga
+put() is similar to dispatch()
