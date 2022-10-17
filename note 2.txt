@@ -178,3 +178,15 @@ all() is an effect that run everything inside and only complete when all of it i
 takeLatest() mean if you hear a bunch of the same action, give the latest one
 call(): turn a function into an effect in saga
 put() is similar to dispatch()
+
+-------------------------------------------------------
+Stripe and serverless function
+
+Adding library: yarn add @stripe/stripe-js @stripe/react-stripe-js
+Put <App> in <Elements stripe={stripePromise}>
+
+.env file
+Is a environment file that only our application has access to these file
+In react app, any variable in .env start with REACT_APP_[variable_name]="[value]"
+To call variable defined in .env, we use process.env.[variable_name]
+You should add .env to .gitignore file
