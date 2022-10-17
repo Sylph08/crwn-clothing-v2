@@ -189,4 +189,17 @@ Put <App> in <Elements stripe={stripePromise}>
 Is a environment file that only our application has access to these file
 In react app, any variable in .env start with REACT_APP_[variable_name]="[value]"
 To call variable defined in .env, we use process.env.[variable_name]
-You should add .env to .gitignore file
+You should add .env to .gitignore file, so it will not deploy to git and the netlify production won't have the variables inside of this files. So that, we need to manually add these variables in Site settings/ Build and deploy / Environment variables
+
+Add netlify functions
+In root folder, create folder with the name exactly is netlify/functions
+yarn add stripe dotenv
+netlify share the same .env and package.json file in local testing. When we deploy this .env file, we will add all the variables of this file manually into the environment of netlify
+
+Netlify CLI allow us to build our entire project in the environment that netlify would, but doing it locally in your own computer
+netlify login
+netlify dev: spin up a development server and build our project in netlify, and netlify functions are also running
+we need to pass appropiate value to the request to the netlify function
+The input data for testing: 4242 4242 4242 4242 01/30 232 24242
+
+margin-left: auto; // push the element to the right of the page
