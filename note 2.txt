@@ -203,3 +203,8 @@ we need to pass appropiate value to the request to the netlify function
 The input data for testing: 4242 4242 4242 4242 01/30 232 24242
 
 margin-left: auto; // push the element to the right of the page
+
+----------------------------------------------------------------
+TypeScript
+
+Union operator : '|', usually with 'type'
