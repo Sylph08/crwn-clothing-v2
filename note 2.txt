@@ -208,3 +208,17 @@ margin-left: auto; // push the element to the right of the page
 TypeScript
 
 Union operator : '|', usually with 'type'
+
+---------------------------------------------------------------
+GraphQL
+
+GraphQL is actually a replacement for Redux, we almost never use both GraphQL and Redux
+
+yarn add @apollo/client graphql
+apollo is a frontend client that allows us to make requests and receive response for GraphQL
+a query is a request for data, a mutation is a request to modify (update, delete) or add data
+The GraphQL server admin need to define to you explicitly what and how you can ask for the data
+Caching in GraphQL is the query caching, not result caching
+
+Redux vs GraphQL and Apollo
+GraphQL is easy to use in React but it need to set up the server, because of that, the complexity will live in the backend GraphQL server
