@@ -254,3 +254,24 @@ With a dynamic import, It's kind of like an async await. The import will became 
 And to use that lazy, we need to put the app <Routes> inside <Suspense>
 
 @media have the higher order than regular selector
+
+------------------------------------------------------------------
+Progessive Web App (PWA)
+
+Native app is the app work on a native platform like a mobile phone
+
+PWA make web apps behave like mobile apps
+
+PWA require HTTPS, service worker, manifest.json
+
+<meta name="viewport" ...> help optimize the app for multiple devices
+
+manifest.json help define how the app is going to launch and to look
+
+In PWA, the service worker acts as a network proxy. The request come from Browser to Service worker, service worker check the data for the request in Cache Storage (in F12 -> Application -> Cache -> Cache Storage), if not exist, the request will come from service worker to the internet and the response will give back to Browser
+
+In React v17 and greater, to add PWA automatically into the new project, we need to use: 'npx create-react-app my-app --template cra-template-pwa'
+To add PWA to your current project, follow these steps:
+1. In a new and separate directory from our current project, generate a new CRA react app with the service worker template: npx create-react-app my-app --template cra-template-pwa
+2. Copy the service-worker.js and serviceWorkerRegistration.js file from the new created app and add it into our client/src directory.
+3. Copy the all the "workbox-*" dependencies from the package.json file in the dependencies section and add it into our client folders package.json dependencies. Then re-install your packages using yarn or npm depending on whichever package manager you have been using up to this point!
