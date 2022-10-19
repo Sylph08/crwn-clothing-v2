@@ -222,3 +222,35 @@ Caching in GraphQL is the query caching, not result caching
 
 Redux vs GraphQL and Apollo
 GraphQL is easy to use in React but it need to set up the server, because of that, the complexity will live in the backend GraphQL server
+
+---------------------------------------------------------------
+Optimize in React
+
+How function declarations inside of a functional component work
+Whenever you render or re-render a functional component, React is going to go through line by line of this entire function every single time. Hooks by nature are more optimized for this process, but not for variables you declare. If we declare a string variable, whenever this component renders or re-render and it hits the declared line, react is re initializing this variable with its string. With this variable casting, this is pretty performant, minimal and has very little cost.
+But when you take something more complex like casting a function (const a = () => {}), this is definitely more expensive. Even with anonymous functions inside the return call, react is re initializing this function every re-render. And the reason why this is happening is because React doesn't know whether or not this is something that is brand new or it isn't brand new because it doesn't know if any of the scoped variables inside are referencing new values. React just operates in a way where it just behaves like regular JavaScript. I see a function definition I'm going to define and initialize the function. Generally speaking, this is not that costly.
+But let's say you're working on an application and you have hundreds of components that are rendering on the page and each and every one of them is initializing a function every single time, and numerous of those are constantly re rendering. In that case, these little, little performance bumps may improve your actual overall performance.
+
+useCallback
+useCallback helps memorize the function, it will not re-initialize the function passed in the first param until any value inside the depedency array passed in the second param changes
+
+useMemo
+useMemo allows us to memorize the return value of a function, the fuction passed into the first param will not rerun until any value inside the depedency array passed in the second param changes
+
+memo
+Combine with React Dev Tool Profiler, it allows us to properly update the appropriate components and render the appropriate ones we want to target only when they need to be updated.
+
+Code spliting: React lazy and react suspense
+They are the ways that we can optimize how browser download the code that serving from our website
+
+Code spliting
+Currently, when we load the home page, it will download the bundle.js file which contains all the source code of our app. And this actions it not efficient bescause we just need the source code of home page only. To fix this, we can use code spliting.
+By code splitting, we tell React and Webpack to split up our bundle into the appropriate quantities for the loading page.
+To do this, we need to use a couple new concepts, the first are React Lazy and React suspense.
+
+React lazy and react suspense
+Both of these are required in order for us to do something known as dynamic imports. Dynamic imports is something that comes from modern JavaScript. When you do an import like "import Home from './routes/home/home.component';", this is a synchronous import, meaning that your JavaScript code is not going to run until all of these imports are successfully brought into this file.
+With a dynamic import, It's kind of like an async await. The import will became like this: "const Home = lazy(() => import('./routes/home/home.component'));" //react will not render this until it's required.
+And to use that lazy, we need to put the app <Routes> inside <Suspense>
+
+@media have the higher order than regular selector
