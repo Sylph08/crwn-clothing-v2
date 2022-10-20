@@ -275,3 +275,25 @@ To add PWA to your current project, follow these steps:
 1. In a new and separate directory from our current project, generate a new CRA react app with the service worker template: npx create-react-app my-app --template cra-template-pwa
 2. Copy the service-worker.js and serviceWorkerRegistration.js file from the new created app and add it into our client/src directory.
 3. Copy the all the "workbox-*" dependencies from the package.json file in the dependencies section and add it into our client folders package.json dependencies. Then re-install your packages using yarn or npm depending on whichever package manager you have been using up to this point!
+
+-----------------------------------------------------------------
+Testing
+
+TDD (test driven development) is the idea of writing tests even before you actually write your application code so that you start writing code based on the tests that you provide.
+
+3 main categories: 
+Unit tests: test individual function or classes
+Intergration tests: test how different pieces of code work together 
+Automation tests: test in real scenarios on the browser by controlling the browser and making sure the expected bahavior on the web is correct.
+
+Testing tool
+- Testing library: give us the ability to use some function to write our tests (Jasmine, Jest, Mocha)
+- Assertion library: a tool allow you to test the variables contain the expected value ((Jasmine, Jest, chai)
+- Test runner: a tool allow us to run our test (Jasmine, Jest, Mocha, Karma). A test runner can run test in different environment
+- Mock Spies and Stubbs: spies provide information about functions (how many times they are called, in what cases, by who), Stubbing replaces selected functions with a function to ensure that the expected behaviour happens and then mocks is kind of like faking a function or a behavior to test different parts of a process. There tools is good for integration tests (Jasmine, Jest, Sinon.js)
+- Code coverage: shows us what percentage of the statements, the branches, the functions are covered with tests (istanbul, Jest)
+Most of these libraries follow the idea of behavioral driven development (BDD), which is we describe what a function does and say what behavior we expect out of them.
+
+Unit test
+A pure function is a function that has no side effects like affecting another part of a program and always returns something based on an input. It is deterministic, meaning that you can put in the same input a million times and you'll still get the same output a million times the exact same way
+Unit tests don't test the contract. The contract is the connection between things, ex: a contract between a server and a database, a contract between a function and another function
