@@ -315,3 +315,9 @@ Install Jest
 -, 'npm test' to run the test
 
 If we are not using Babel or Webpack, we won't have the import and export statement, we can use 'module.exports = googleSearch;' instead. To import it, we use 'const googleSearch = require('./script');'
+
+Test asynchronous function
+To test, we use expect.assertions([amount_of_test]), done() after jest test or return that async function
+expect.assertions(number) verifies that a certain number of assertions are called during a test. This is often useful when testing asynchronous code, in order to make sure that assertions in a callback actually got called.
+https://github.com/sapegin/jest-cheat-sheet
+Mocks and Spies: With Mock we can fake a function and just pretend to have it running. So that we can use this mock to let us spy on the behavior of a function that is called indirectly by some other code, rather than just testing the output and waiting for the asynchronous code to complete
