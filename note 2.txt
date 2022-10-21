@@ -297,3 +297,21 @@ Most of these libraries follow the idea of behavioral driven development (BDD), 
 Unit test
 A pure function is a function that has no side effects like affecting another part of a program and always returns something based on an input. It is deterministic, meaning that you can put in the same input a million times and you'll still get the same output a million times the exact same way
 Unit tests don't test the contract. The contract is the connection between things, ex: a contract between a server and a database, a contract between a function and another function
+
+Intergration test
+Integration tests are all about cross communication between different units of code (side effect)
+
+Automation tests (UI tests)
+It is a end-to-end testing, Automation tests are UI tests that are always running inside a browser or a browser like environment because they need to simulate user behavior in these environments such as clicking, typing, scrolling
+
+Tests are meant for development. You're never going to ship your test libraries or your test code into production.
+
+If  we add '--save-dev' when installing a package, in package.json file, it will be added to 'devDependencies' segment, not 'dependencies' like without '--save-dev'
+
+Install Jest
+-, npm i --save-dev jest
+-, in package.json, add "test": "jest --watch *.js" in "scripts"
+' --watch *.js' is optional means jest will run the test everytime we make the code changes and save it in .js file
+-, 'npm test' to run the test
+
+If we are not using Babel or Webpack, we won't have the import and export statement, we can use 'module.exports = googleSearch;' instead. To import it, we use 'const googleSearch = require('./script');'
