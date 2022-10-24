@@ -339,3 +339,25 @@ Testing reducers: reducer is just a simple function, so that we can use like: ex
 Testing actions: 
 with normal action function return an action, it is a normal function, so that we can test using: expect(function_call()).toEqual();
 when action combine with redux-thunk, to test actions we can use: npm i --save-dev redux-mock-store
+
+-----------------------------------------------------------------
+Webpack and Babel
+
+Webpack help to convert code into the version that browser can understand
+To add webpack to our project, we do this: 
+	yarn add webpack webpack-cli. 
+	Create file 'webpack.config.js'. We have to use ES5 syntax in this file. When we run project, webpack will find this file automatically
+	in package.json, 'scripts' section, we add '"build": "webpack --mode production"'
+	modify webpack.config.js
+Babel is the library that helps transport JavaScript and JSX down into older versions of JavaScript.
+To add Babel to our project, we do this: 
+	yarn add @babel/core @babel/preset-env @babel/preset-react babel-loader
+	add '.babelrc' file to project folder: this file tells Babble what it needs to transpire down to
+To handle CSS file, we do this:
+	yarn add style-loader css-loader
+	// style loader is what allows it to convert different types of style files
+	// CSS loader is what allows the CSS to be read by our JavaScript files
+To handle HTMl file, we do this:
+	yarn add html-loader html-webpack-plugin
+	HTML loader is the thing that lets us read our HTML file inside of our React application.
+	Webpack plugin is what allows us to actually place the output somewhere. So it's going to build all of our HTML files and create efficient HTML bundles with the JavaScript for each page.
