@@ -361,3 +361,16 @@ To handle HTMl file, we do this:
 	yarn add html-loader html-webpack-plugin
 	HTML loader is the thing that lets us read our HTML file inside of our React application.
 	Webpack plugin is what allows us to actually place the output somewhere. So it's going to build all of our HTML files and create efficient HTML bundles with the JavaScript for each page.
+
+-------------------------------------------------------------------
+GatsbyJS
+
+Client side rendering: react code -> browser engine -> generate HTML
+Server side rendering: react code -> backend server -> generate HTML
+	If you have a website that is performing slowly and can exceed the amount of power that our browser engine has, then you want to use something like NextJS. It is a framework using server side rendering and allows you to build a really robust and large website that might end up having really complex logic to build out your views
+Static site generator:
+Client side rendering and Server side rendering is live generated or dynamically generated, meaning that we directly generate the HTML whenever the browser navigates to different routes
+Static site generator means all of the code that builds to the HTML pages that end up comprising our application is all done at the build step. GatsbyJS is good for building static websites that generally don't need to dynamically change the views that often. This is actually exactly what we need for a blog website where much of the actual content is already predetermined. It's already written
+
+npx gatsby new [project_name]
+npm run develop -> after this, it will give us 2 routes: localhost:8000 (the actual website) and localhost:8000/___graphql
