@@ -288,10 +288,10 @@ Automation tests: test in real scenarios on the browser by controlling the brows
 
 Testing tool
 - Testing library: give us the ability to use some function to write our tests (Jasmine, Jest, Mocha)
-- Assertion library: a tool allow you to test the variables contain the expected value ((Jasmine, Jest, chai)
+- Assertion library: a tool allow you to test the variables contain the expected value (Jasmine, Jest (.expect(), .equal()...), chai)
 - Test runner: a tool allow us to run our test (Jasmine, Jest, Mocha, Karma). A test runner can run test in different environment
-- Mock Spies and Stubbs: spies provide information about functions (how many times they are called, in what cases, by who), Stubbing replaces selected functions with a function to ensure that the expected behaviour happens and then mocks is kind of like faking a function or a behavior to test different parts of a process. There tools is good for integration tests (Jasmine, Jest, Sinon.js)
-- Code coverage: shows us what percentage of the statements, the branches, the functions are covered with tests (istanbul, Jest)
+- Mock Spies and Stubbs: spies provide information about functions (how many times they are called, in what cases, by who), Stubbing replaces selected functions with a function to ensure that the expected behaviour happens and then mocks is kind of like faking a function or a behavior to test different parts of a process. There tools is good for integration tests (Jasmine, Jest (mock function in test API below), Sinon.js)
+- Code coverage: shows us what percentage of the statements, the branches, the functions are covered with tests (istanbul, Jest (npm test -- --coverage))
 Most of these libraries follow the idea of behavioral driven development (BDD), which is we describe what a function does and say what behavior we expect out of them.
 
 Unit test
@@ -313,6 +313,7 @@ Install Jest
 -, in package.json, add "test": "jest --watch *.js" in "scripts"
 ' --watch *.js' is optional means jest will run the test everytime we make the code changes and save it in .js file
 -, 'npm test' to run the test
+(Note: Jest are now included in react-scripts when using npx create-react-app)
 
 If we are not using Babel or Webpack, we won't have the import and export statement, we can use 'module.exports = googleSearch;' instead. To import it, we use 'const googleSearch = require('./script');'
 
@@ -321,3 +322,20 @@ To test, we use expect.assertions([amount_of_test]), done() after jest test or r
 expect.assertions(number) verifies that a certain number of assertions are called during a test. This is often useful when testing asynchronous code, in order to make sure that assertions in a callback actually got called.
 https://github.com/sapegin/jest-cheat-sheet
 Mocks and Spies: With Mock we can fake a function and just pretend to have it running. So that we can use this mock to let us spy on the behavior of a function that is called indirectly by some other code, rather than just testing the output and waiting for the asynchronous code to complete
+		
+Test component: Enzyme, React Testing Library
+Enzyme
+shallow() help to test all basic JSX element of a component (ex: <div>, <h1>, <h2>...), it won't test the children component (ex: <Card>, <Header>...)
+mount() help full DOM rendering (rarely use)
+Snapshot in Jest: .toMatchSnapshot() take a picture of component and store it in __snapshots__ folder (we should push this folder to github), if we make some changes in a snapshoted component, the test result will be failed and Jest will show us these differences in console window. To update a new snapshot for that component, in console window, press 'u'.
+run 'npm test -- --coverage' to show the test report, test coverage of the project.
+To test a component's state, we can use shallow(<Component_name>).state() to access its state
+To test a component's props, we can use shallow(<Component_name>).props() to access its props
+To test a component's method, we can use shallow(<Component_name>).instance().[method_name()] to access its method
+To test api request, we can use these libraries: nock or super-test
+beforeEach() run before every test time
+
+Testing reducers: reducer is just a simple function, so that we can use like: expect(function_call()).toEqual();
+Testing actions: 
+with normal action function return an action, it is a normal function, so that we can test using: expect(function_call()).toEqual();
+when action combine with redux-thunk, to test actions we can use: npm i --save-dev redux-mock-store
